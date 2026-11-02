@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopping Cart</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 16px; }
+    li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>Shopping Cart Management</h1>
+  <p>This page is served using the Node.js <b>fs</b> module.</p>
+  <ul id="items"></ul>
+  <script>
+    fetch('/cart').then(r => r.json()).then(items => {
+      document.getElementById('items').innerHTML = items
+        .map(i => `<li>${i.productName} - ₹${i.price} x ${i.quantity}</li>`).join('');
+    });
+  </script>
+</body>
+</html>
